@@ -76,21 +76,21 @@ class CreateProject extends Component {
 
   onUpdateTicket = (event) => {
     var splitted1 = false;
+    var splitted2 = false;
 
-    event.preventDefault();
+    // event.preventDefault();
     var var1 = document.getElementById("formControlsTicketTitle").value;
     var var2 = document.getElementById("formControlsDate").value;
-    var var3 = document.getElementById("formControlsMembers").value;
 
+    var var3 = document.getElementById("formControlsMembers").value;
     if (var3.indexOf(',') > -1) { var3 = var3.split(','); splitted1 = true; }
 
 
-    var var4 = document.getElementById("formControlsManager").value.split(',');
-    
-    if (var4.indexOf(',') > -1) { var4 = var4.split(','); splitted1 = true; }
+    var var4 = document.getElementById("formControlsManager").value;
+    if (var4.indexOf(',') > -1) { var4 = var4.split(','); splitted2 = true; }
 
 
-    // console.log(var1, var2, var3, var4)
+    console.log(var4)
 
 
     var project = {pid:uuidv4(), projectName:var1, dateCreated:var2}
@@ -115,7 +115,7 @@ class CreateProject extends Component {
         .then(res=>{
             console.log(res.data, "here")
 
-            if(res.data != ""){
+            if(res.data !== ""){
               axios.post("http://localhost:8080/api/User", {uid:res.data.uid, name:res.data.name, projectIds:res.data.projectIds.concat([project.pid])})
               .then(res=>console.log(res))   
             }
@@ -125,6 +125,8 @@ class CreateProject extends Component {
 
 
         })
+        .catch(err => console.log(err))
+
 
       }
     }
@@ -133,7 +135,7 @@ class CreateProject extends Component {
         axios.get(`http://localhost:8080/api/User/${var3}`)
         .then(res=>{
             console.log(res.data, "here")
-            if(res.data != ""){
+            if(res.data !== ""){
             axios.post("http://localhost:8080/api/User", {uid:res.data.uid, name:res.data.name, projectIds:res.data.projectIds.concat([project.pid])})
             .then(res=>console.log(res))
             }
@@ -145,17 +147,60 @@ class CreateProject extends Component {
 
 
         })
+        .catch(err => console.log(err))
+
+
+    }
+    // this portion of code is fore updating the project manage collection
+
+    if(splitted2 === true){
+      for(var i=0; i<var4.length; i++){
+        var4[i] = var4[i].trim()
+        console.log(var4[i])
+        axios.get(`http://localhost:8080/api/ProjectManager/${var4[i]}`)
+        .then(res=>{
+            console.log(res.data, "here")
+
+            if(res.data !== ""){
+              axios.post("http://localhost:8080/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, 
+                                                                     projectIds:res.data.projectIds.concat([project.pid])})
+              .then(res=>console.log(res))   
+            }
+            else{
+              console.log("res data is empty");
+            }
+
+
+        })
+        .catch(err => console.log(err))
+
+
+      }
+    }
+    else if(splitted2 === false){
+      var4 = var4.trim()
+        axios.get(`http://localhost:8080/api/ProjectManager/${var4}`)
+        .then(res=>{
+            console.log(res.data, "here")
+            if(res.data !== ""){
+            axios.post("http://localhost:8080/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, projectIds:res.data.projectIds.concat([project.pid])})
+            .then(res=>console.log(res))
+            }
+            else{
+              console.log("empty")
+            }
+
+              
+
+
+        })
+        .catch(err => console.log(err))
+
 
 
     }
 
-    
-    // for(var i=0; i<var4.length; i++){
-    //   var4[i] = var4[i].trim()
-    //   console.log(var4[i])
-    // }
 
-    // window.location.href = "http://localhost:3000/admin/AllTickets";
 
 
 
@@ -251,30 +296,12 @@ class CreateProject extends Component {
                     
                     </Row>
 
-                    {/*  */}
-                   
 
-
-
-                    {/*  */}
-
-                    {/* <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>Your comment</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="No comment."
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row> */}
-
-                      <Button bsStyle="info" pullRight fill type="submit" onClick={this.onUpdateTicket}>
-                        Create Project
-                      </Button>
+                      <Link to="/admin/dashboard" onClick={this.onUpdateTicket}>
+                          <Button bsStyle="info" pullRight fill type="submit">
+                            Create Project
+                          </Button>
+                      </Link>
                     <div className="clearfix" />
                   </form>
                 }
