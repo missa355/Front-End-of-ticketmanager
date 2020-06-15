@@ -94,7 +94,7 @@ class AllTickets extends Component {
   
   render() {
     return (
-      <div className="content">
+      <div className="content" style={{backgroundColor:"#171F24"}}>
       {/* <Tooltip id="edit_tooltip">Edit Task</Tooltip> */}
         <Row>
             <Col md={12}>

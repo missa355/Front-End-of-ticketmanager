@@ -35,7 +35,7 @@ import avatar from "assets/img/faces/face-3.jpg";
 class UserProfile extends Component {
   render() {
     return (
-      <div className="content">
+      <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>
           <Row>
             <Col md={8}>

@@ -25,7 +25,7 @@ import SpecificTicket from "views/SpecificTicket.jsx"
 import Icons from "views/Icons.jsx";
 import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
-import Upgrade from "views/Upgrade.jsx";
+import SpecificProject from "views/SpecificProject.jsx"
 import CreateTicket from "views/CreateTicket.jsx"
 import Axios from "axios";
 import CreateProject from "views/CreateProject";
@@ -153,10 +153,34 @@ for(i=0; i<tkts.length; i++){
       TicketId:tkts[i].tid
     }
   )
-  console.log(tkts[i])
+  // console.log(tkts[i])
 
   
 }
-// console.log(TicketRoutes)
+//Adding the project pages
+Axios.get("http://localhost:8080/api/Project") //this gets all tickets
+.then(res => {
+  localStorage.setItem("projects", JSON.stringify(res.data))
+  }); 
+
+  var projects = JSON.parse(localStorage.getItem("projects"))
+
+
+var i = 0;
+for(i=0; i<projects.length; i++){
+  TicketRoutes.unshift(
+    {
+      path: `/ChooseProject/${projects[i].pid}`,
+      name: "Project",
+      icon: "pe-7s-file",
+      component: SpecificProject,
+      layout: "/admin",
+      ProjectId:projects[i].pid
+    }
+  )
+  // console.log(projects[i])
+
+  
+}
 
 export default TicketRoutes;

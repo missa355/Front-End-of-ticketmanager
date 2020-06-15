@@ -36,19 +36,13 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 import Axios from "axios";
 
-class SpecificTicket extends Component {
+class SpecificProject extends Component {
 
   state = {
-    tid:"",
     pid:"",
-    uid:"",
     Title:"",
-    Createdby:"",
+    Createdby:"Yet to be implemented",
     DateCreated:"",
-    Description:"",
-    category:"",
-    Status:"",
-    Priority:""
 
   }
 
@@ -58,10 +52,9 @@ class SpecificTicket extends Component {
 
   componentDidMount(){
     // console.log(this.props.TicketId)
-    Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
+    Axios.get(`http://localhost:8080/api/Project/${this.props.TicketId}`)
     .then(res => {
-      this.setState({tid:res.data.tid, pid:res.data.pid, uid:res.data.uid, Title:res.data.ticketname, DateCreated:res.data.dateCreated, category:res.data.category,
-                    Status:res.data.status, Priority:res.data.priority, Createdby:res.data.creatorName, Description:res.data.desc
+      this.setState({pid:res.data.pid, Title:res.data.projectName, DateCreated:res.data.dateCreated
       })
       console.log(this.state)
     })
@@ -74,14 +67,14 @@ class SpecificTicket extends Component {
           <Row>
             <Col md={8}>
               <Card
-                title="Ticket info"
+                title="Project info"
                 content={
                   <form>
                     <FormInputs
                       ncols={["col-md-5", "col-md-3", "col-md-4"]}
                       properties={[
                         {
-                          label: "Ticket Title",
+                          label: "Project Title",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Company",
@@ -109,24 +102,75 @@ class SpecificTicket extends Component {
                   
 
                     <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>Description</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Here can be your description"
-                            value={this.state.Description}
-                            onChange={this.handleChange}
-                            
-                          />
-                        </FormGroup>
+                      <Col md={4}>
+                          <h5>Project Members</h5>
+                          <ul style={{height:"100px", overflowY:"scroll"}}>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+
+                          </ul>
+                        
+                      </Col>
+                      <Col md={4}>
+                          <h5>Project Developers</h5>
+                          <ul style={{height:"100px", overflowY:"scroll"}}>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+                              <li>User 1</li>
+
+                          </ul>
+                        
+                      </Col>
+                      <Col md={4}>
+                          <h5>Project Manager(s)</h5>
+                          <ul>
+                              <li>User 1</li>
+                          </ul>
+                        
                       </Col>
                     </Row>
+                    <Row>
+                        <Col md={6}>
+                            <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel>Add Members</ControlLabel>
+                            <FormControl
+                                rows="1"
+                                componentClass="textarea"
+                                bsClass="form-control"
+                                placeholder="Here can be your description"
+                                // value={this.state.Description}
+                                onChange={this.handleChange}
+                                
+                            />
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel>Remove Members</ControlLabel>
+                            <FormControl
+                                rows="1"
+                                componentClass="textarea"
+                                bsClass="form-control"
+                                placeholder="Here can be your description"
+                                // value={this.state.Description}
+                                onChange={this.handleChange}
+                                
+                            />
+                            </FormGroup>
+                        </Col>
+                    </Row>
 
-                    {/*  */}
-                    <Tabs>
+                    
+                    {/* <Tabs>
                         <TabList>
                           <Tab>Comments</Tab>
                           <Tab>Attachments</Tab>
@@ -178,7 +222,6 @@ class SpecificTicket extends Component {
 
 
 
-                    {/*  */}
 
                     <Row>
                       <Col md={12}>
@@ -192,7 +235,7 @@ class SpecificTicket extends Component {
                           />
                         </FormGroup>
                       </Col>
-                    </Row>
+                    </Row> */}
 
                     <Button bsStyle="info" pullRight fill type="submit">
                       Update Ticket
@@ -225,4 +268,4 @@ class SpecificTicket extends Component {
   }
 }
 
-export default SpecificTicket;
+export default SpecificProject;

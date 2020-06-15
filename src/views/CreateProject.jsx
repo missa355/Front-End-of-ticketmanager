@@ -93,7 +93,23 @@ class CreateProject extends Component {
     console.log(var4)
 
 
-    var project = {pid:uuidv4(), projectName:var1, dateCreated:var2}
+    if(splitted1 === true && splitted2 === true){
+      
+      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:var4}
+
+    }
+    else if(splitted1 === true){
+      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:[var4]}
+
+    }
+    else if(splitted2 === true){
+      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:var4}
+
+    }
+    else if(splitted1 === false && splitted2 === false){
+      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:[var4]}
+
+    }
     
     // console.log(project)
     // Creating a project and adding it to the mongo database
@@ -210,7 +226,7 @@ class CreateProject extends Component {
 
   render() {
     return (
-      <div className="content">
+      <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>
           <Row>
             <Col md={6}>

@@ -107,6 +107,23 @@ class Admin extends Component {
             />
           );
         }
+        else if(prop.name==="Project"){
+          // console.log(prop)
+          return (
+            //this is where the routes are created
+            <Route
+              path={prop.layout + prop.path}
+              render={props => (
+                <prop.component //this is for example "SpecificTicket"
+                  {...props}
+                  handleClick={this.handleNotificationClick}
+                  TicketId = {prop.ProjectId}
+                />
+              )}
+              key={key}
+            />
+          );
+        }
         return (
           <Route
             path={prop.layout + prop.path}

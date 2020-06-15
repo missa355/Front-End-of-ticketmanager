@@ -102,7 +102,7 @@ class SpecificTicket extends Component {
 
   render() {
     return (
-      <div className="content">
+      <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>
           <Row>
             <Col md={8}>

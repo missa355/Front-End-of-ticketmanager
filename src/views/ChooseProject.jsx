@@ -77,7 +77,7 @@ class AllTickets extends Component {
       Axios.get("http://localhost:8080/api/Project")
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
-            this.setState({tdArray:[...this.state.tdArray, [res.data[0].projectName, res.data[0].pid, "missa355", res.data[0].dateCreated]]})
+            this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
             // console.log(this.state.tdArray)
           }
 
@@ -88,7 +88,7 @@ class AllTickets extends Component {
   
   render() {
     return (
-      <div className="content">
+      <div className="content" style={{backgroundColor:"#171F24"}}>
       {/* <Tooltip id="edit_tooltip">Edit Task</Tooltip> */}
         <Row>
             <Col md={6}>
