@@ -70,6 +70,7 @@ const tdArray = [
 
 class AllTickets extends Component {
     state = {
+        pids:[],
         tdArray:[]
     }
 
@@ -78,7 +79,7 @@ class AllTickets extends Component {
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
-            // console.log(this.state.tdArray)
+            this.setState({pids:[...this.state.pids, res.data[i].pid]})
           }
 
     })
@@ -114,7 +115,7 @@ class AllTickets extends Component {
                               {
                                   this.state.tdArray.map((prop,key) => {
                                       return (
-                                          <tr onClick={()=>{alert("hello")}} className="project" key={key}>{
+                                          <tr className="project" key={key}>{
                                               prop.map((prop,key)=> {
                                                   return (
                                                       <td  key={key}>{prop}</td>
@@ -122,7 +123,7 @@ class AllTickets extends Component {
                                               })
                                           }
                                           {/* //this is the custom added "edit buttom" */}
-                                            <td>{edit_butt}</td> 
+                                            <td><Link to={`/admin/ChooseProject/${this.state.pids[key]}`}>{edit_butt}</Link></td> 
                                           </tr>
                                       )
                                   })

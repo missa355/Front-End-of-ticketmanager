@@ -117,7 +117,7 @@ class Admin extends Component {
                 <prop.component //this is for example "SpecificTicket"
                   {...props}
                   handleClick={this.handleNotificationClick}
-                  TicketId = {prop.ProjectId}
+                  ProjectId = {prop.ProjectId}
                 />
               )}
               key={key}
