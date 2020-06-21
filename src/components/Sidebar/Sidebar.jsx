@@ -75,6 +75,24 @@ class Sidebar extends Component {
           <ul className="nav">
             {this.state.width <= 991 ? <AdminNavbarLinks /> : null}
             {this.props.routes.map((prop, key) => {
+              if(prop.type === "None"){
+                return (
+                  <li
+                    className={
+                      prop.upgrade
+                        ? "active active-pro"
+                        : this.activeRoute(prop.layout + prop.path)
+                    }
+                    key={key}
+                    style={{marginLeft:"29px"}}
+                  >
+
+                      <i className={prop.icon} />
+                      <p>{prop.name}</p>
+                  </li>
+                );
+
+              }
               if (!prop.redirect)
                 return (
                   <li

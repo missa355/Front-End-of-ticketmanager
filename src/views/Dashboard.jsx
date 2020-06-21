@@ -40,12 +40,47 @@ import {
 
 class Dashboard extends Component {
 
-  componentDidMount = () => {
-    axios.get("http://localhost:8080/api/Ticket")
-    .then(res => {
-            console.log(res.data)
+  state = {
+    NumberOfTickets:0,
+    Resolved: 0,
+    Unresolved: 0,
+    Urgent: 0
+  }
 
-        })
+  componentDidMount = () => {
+    if(localStorage.getItem("SelectedProject") !== null){
+      axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
+          .then(res => {
+              this.setState({NumberOfTickets:res.data.length})
+              var resloved = 0;
+              var unresloved = 0;
+              var urgent = 0;
+
+              for(var i=0; i<res.data.length; i++){
+                if(res.data[i].status !== "resloved"){
+                  unresloved++;
+                }
+                if(res.data[i].status === "resolved"){
+                  resloved++;
+                }
+                if(res.data[i].status === "urgent"){
+                  urgent++;
+                }
+
+              }
+              this.setState({Resolved:resloved, Unresolved:unresloved, Urgent:urgent})
+            // for(var i=0; i<res.data.length; i++){
+            //   this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, "1224879671", res.data[i].creatorName, 
+            //   res.data[i].priority,  res.data[i].status, res.data[i].dateCreated, "Issue.png"] ]})
+    
+            //   this.setState({tids:[...this.state.tids, res.data[i].tid]})
+            // }
+  
+            // console.log(this.state)
+  
+            }
+          )
+      }
   }
 
 
@@ -68,7 +103,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-ticket" />}
                 statsText="Tickets filed"
-                statsValue="15"
+                statsValue={this.state.NumberOfTickets}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -77,7 +112,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-ticket" />}
                 statsText="Tickets Resolved"
-                statsValue="13"
+                statsValue={this.state.Resolved}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -86,7 +121,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-ticket" />}
                 statsText="Unresolved Tickets"
-                statsValue="2"
+                statsValue={this.state.Unresolved}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
               />
@@ -95,7 +130,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-ticket" />}
                 statsText="Urgent Tickets"
-                statsValue="1"
+                statsValue={this.state.Urgent}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />

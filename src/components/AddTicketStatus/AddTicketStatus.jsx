@@ -25,13 +25,7 @@ import SelectStatus from "components/SelectStatus/SelectStatus";
 
 
 export class AddTicketStatus extends Component {
-  handleCheckbox = event => {
-    const target = event.target;
-    console.log(event.target);
-    this.setState({
-      [target.name]: target.checked
-    });
-  };
+
   render() {
     // const edit = <Tooltip id="edit_tooltip">Edit Task</Tooltip>;
     // const remove = <Tooltip id="remove_tooltip">Remove</Tooltip>;

@@ -71,7 +71,8 @@ const tdArray = [
 class AllTickets extends Component {
     state = {
         pids:[],
-        tdArray:[]
+        tdArray:[],
+        Pnames:[]
     }
 
   componentDidMount = () => {
@@ -80,9 +81,21 @@ class AllTickets extends Component {
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
             this.setState({pids:[...this.state.pids, res.data[i].pid]})
+            this.setState({Pnames:[...this.state.Pnames, res.data[i].projectName]})
+
           }
 
     })
+
+  }
+
+  chooseproject = (key) => {
+    //   alert(this.state.pids[key])
+      localStorage.setItem("SelectedProject", this.state.pids[key])
+      localStorage.setItem("NameOfChosenProject", this.state.Pnames[key])
+
+      console.log(localStorage.getItem("SelectedProject"))
+      window.location.href = "http://localhost:3000/admin/dashboard";
 
   }
 
@@ -115,7 +128,7 @@ class AllTickets extends Component {
                               {
                                   this.state.tdArray.map((prop,key) => {
                                       return (
-                                          <tr className="project" key={key}>{
+                                          <tr className="project" key={key} onClick={()=>this.chooseproject(key)}>{
                                               prop.map((prop,key)=> {
                                                   return (
                                                       <td  key={key}>{prop}</td>

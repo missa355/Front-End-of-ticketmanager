@@ -46,10 +46,39 @@ class SpecificTicket extends Component {
     Createdby:"",
     DateCreated:"",
     Description:"",
+    Comments:[],
     category:"",
     Status:"",
     Priority:""
+    // logs:[]
 
+  }
+
+  EditTicket = (event) => {
+    event.preventDefault();
+
+    var var1 = document.getElementById("formControlsCommmentArea").value;
+
+
+    Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
+    .then(res => {
+      Axios.post("http://localhost:8080/api/Ticket", 
+      {
+        tid: res.data.tid,
+        pid: res.data.pid,
+        uid: res.data.uid,
+        dateCreated: res.data.dateCreated,
+        desc: res.data.desc,
+        comments:res.data.comments.concat(var1),
+        status: res.data.status,
+        priority: res.data.priority,
+        category: res.data.category,
+        ticketname: res.data.ticketname,
+        logs:res.data.logs
+        // CreatorName: "zenyatt12"
+    })
+      console.log(this.state)
+    })
   }
 
   handleChange= (event) => {
@@ -61,7 +90,7 @@ class SpecificTicket extends Component {
     Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
     .then(res => {
       this.setState({tid:res.data.tid, pid:res.data.pid, uid:res.data.uid, Title:res.data.ticketname, DateCreated:res.data.dateCreated, category:res.data.category,
-                    Status:res.data.status, Priority:res.data.priority, Createdby:res.data.creatorName, Description:res.data.desc
+                    Status:res.data.status, Priority:res.data.priority, Createdby:res.data.uid, Description:res.data.desc, Comments:res.data.comments
       })
       console.log(this.state)
     })
@@ -134,6 +163,16 @@ class SpecificTicket extends Component {
 
                         <TabPanel>
                           <div>
+                          {this.state.Comments.map((block, i) => 
+                            <blockquote key={i}>
+                              <p>
+                                {block}
+                              </p>
+                              <small><b>Zen Yatta</b> : <i>Saturday, May 30, 2020, 7:44 PM</i> </small>
+                            </blockquote>                          
+                          )}  
+                          </div>
+                          {/* <div>
                             <blockquote>
                               <p>
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing
@@ -143,18 +182,7 @@ class SpecificTicket extends Component {
                               </p>
                               <small><b>Zen Yatta</b> : <i>Saturday, May 30, 2020, 7:44 PM</i> </small>
                             </blockquote>
-                          </div>
-                          <div>
-                            <blockquote>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                elit, sed diam nonummy nibh euismod tincidunt ut
-                                laoreet dolore magna aliquam erat volutpat. Ut wisi
-                                enim ad minim veniam.
-                              </p>
-                              <small><b>Zen Yatta</b> : <i>Saturday, May 30, 2020, 7:44 PM</i> </small>
-                            </blockquote>
-                          </div>
+                          </div> */}
                         </TabPanel>
                         <TabPanel>
                           <div>
@@ -182,7 +210,7 @@ class SpecificTicket extends Component {
 
                     <Row>
                       <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
+                        <FormGroup controlId="formControlsCommmentArea">
                           <ControlLabel>Your comment</ControlLabel>
                           <FormControl
                             rows="5"
@@ -194,7 +222,7 @@ class SpecificTicket extends Component {
                       </Col>
                     </Row>
 
-                    <Button bsStyle="info" pullRight fill type="submit">
+                    <Button bsStyle="info" pullRight fill type="submit" onClick={this.EditTicket}>
                       Update Ticket
                     </Button>
                     <div className="clearfix" />

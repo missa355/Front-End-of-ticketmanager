@@ -38,8 +38,40 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import { v4 as uuidv4 } from 'uuid';
 
+import Select from 'react-select'
 
-import avatar from "assets/img/faces/face-3.jpg";
+const options = [
+  { value: 'Software', label: 'Software' },
+  { value: 'Network', label: 'Network' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Logistics', label: 'Logistics' }
+
+]
+const options2 = [
+  { value: 'New', label: 'New' },
+  { value: 'In-Progress', label: 'In-Progress' },
+  { value: 'Resolved', label: 'Resolved' }
+]
+const options3 = [
+  { value: 'Normal', label: 'Normal' },
+  { value: 'Important', label: 'Important' },
+  { value: 'Very Important', label: 'Very Important' }
+]
+
+const MyComponent = () => (
+  <tbody>
+    <tr></tr>
+    <tr><td><h5>Category</h5></td><td> <Select options={options}  onChange={this.handleChange}/></td></tr>
+    <tr><td><h5>Status</h5></td><td> <Select options={options2} /></td></tr>
+    <tr><td><h5>Priority</h5></td><td> <Select options={options3} /></td></tr>
+
+  </tbody>
+
+
+)
+
+
+
 
 var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
 var today = new Date(usaTime);
@@ -67,7 +99,10 @@ class SpecificTicket extends Component {
     TicketTitle:"",//input from user
     TicketCreatorName:"",//input from user
     DateCreated:"",//input from system
-    Description:""//input from user
+    Description:"",//input from user
+    Status:"",
+    Category:"",
+    Priority:""
 
   }
 
@@ -76,6 +111,18 @@ class SpecificTicket extends Component {
         .then(res => console.log(res.data))
 
   }
+  handleChange1 = selectedOption => {
+    this.setState({Category: selectedOption});
+    console.log(`Option selected:`, selectedOption);
+  };
+  handleChange2 = selectedOption => {
+    this.setState({Status: selectedOption});
+    console.log(`Option selected:`, selectedOption);
+  };
+  handleChange3 = selectedOption => {
+    this.setState({Priority: selectedOption});
+    console.log(`Option selected:`, selectedOption);
+  };
 
 
   onUpdateTicket = (event) => {
@@ -86,13 +133,44 @@ class SpecificTicket extends Component {
     var var4 = document.getElementById("formControlsDate").value;
 
 
-    var ticketjson = {tid:uuidv4(), pid:uuidv4(), uid:uuidv4(), Ticketname:var2, dateCreated:var4,
-                      CreatorName:var3, desc:var1, status:"new", priority:"Normal", category:"software"}
+    if(localStorage.getItem("SelectedProject") !== null){
+      console.log(localStorage.getItem("SelectedProject"))
 
-    axios.post("http://localhost:8080/api/Ticket", ticketjson)
-        .then(res => console.log(res))
+      // var ticketjson = {tid:uuidv4(), pid:localStorage.getItem("SelectedProject"), uid:"missa355", ticketname:var2, dateCreated: var4,
+      // creatorName:var3, desc:var1, status:"new", priority:"Normal", category:"software"}
+      
 
-        window.location.href = "http://localhost:3000/admin/AllTickets";
+      var ticketjson =     {
+        tid: uuidv4(),
+        pid: localStorage.getItem("SelectedProject"),
+        uid: var3,
+        dateCreated: var4,
+        desc: var1,
+        comments:[],
+        status: this.state.Status.value,
+        priority: this.state.Priority.value,
+        category: this.state.Category.value,
+        Ticketname: var2,
+        logs:[]
+        // CreatorName: "zenyatt12"
+    }
+      console.log(ticketjson)
+
+      axios.post("http://localhost:8080/api/Ticket", ticketjson)
+      .then(res => console.log(res))
+
+      // axios.get("http://localhost:8080/api/Ticket")
+      // .then(res => console.log(res))
+
+    }
+    // var ticketjson = {tid:uuidv4(), pid:uuidv4(), uid:uuidv4(), Ticketname:var2, dateCreated:var4,
+    //                   CreatorName:var3, desc:var1, status:"new", priority:"Normal", category:"software"}
+
+    // axios.post("http://localhost:8080/api/Ticket", ticketjson)
+    //     .then(res => console.log(res))
+    // window.location.reload(true);
+
+    window.location.href = "http://localhost:3000/admin/AllTickets";
 
 
 
@@ -129,12 +207,12 @@ class SpecificTicket extends Component {
                       
                       <Col md={4}>
                         <FormGroup controlId="formControlsCreator">
-                          <ControlLabel>Creator name</ControlLabel>
+                          <ControlLabel>Creator ID</ControlLabel>
                           <FormControl
                             rows="1"
                             type = "text"
                             bsClass="form-control"
-                            placeholder="Enter ID"
+                            placeholder="Enter UserID"
                             // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
                             // playlist we get an issue with it calling another fuction who call the original function causing a 
                             // loop."
@@ -268,7 +346,13 @@ class SpecificTicket extends Component {
                 content={
                   <div className="table-full-width"  >
                     <table className="table">
-                      <AddTicketStatus />
+                      <tbody>
+                        <tr></tr>
+                        <tr><td><h5>Category</h5></td><td> <Select options={options}  onChange={this.handleChange1}/></td></tr>
+                        <tr><td><h5>Status</h5></td><td> <Select options={options2} onChange={this.handleChange2} /></td></tr>
+                        <tr><td><h5>Priority</h5></td><td> <Select options={options3} onChange={this.handleChange3} /></td></tr>
+
+                      </tbody>
                     </table>
                   </div>
                 }

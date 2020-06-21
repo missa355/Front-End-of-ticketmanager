@@ -68,13 +68,7 @@ const dashboardRoutes = [
     component: AllTicket,
     layout: "/admin"
   },
-  // {
-  //   path: "/SpecificTicket",
-  //   name: "Specific Tickets",
-  //   icon: "pe-7s-ticket",
-  //   component: SpecificTicket,
-  //   layout: "/admin"
-  // },
+
   {
     path: "/user",
     name: "User Profile",
@@ -110,13 +104,6 @@ const dashboardRoutes = [
   //   component: Maps,
   //   layout: "/admin"
   // },
-  // {
-  //   path: "/notifications",
-  //   name: "Notifications",
-  //   icon: "pe-7s-bell",
-  //   component: Notifications,
-  //   layout: "/admin"
-  // },
   {
     upgrade: true,
     path: "/CreateProject",
@@ -126,18 +113,5 @@ const dashboardRoutes = [
     layout: "/admin"
   }
 ];
-// var i = 0;
-// for(i=0; i<ids.length; i++){
-//   dashboardRoutes.push(
-//     {
-//       path: `/AllTickets/${ids[i]}`,
-//       name: "Choose a Project",
-//       icon: "pe-7s-file",
-//       component: Dashboard,
-//       layout: "/admin"
-//     }
-//   )
-  
-// }
 
 export default dashboardRoutes;

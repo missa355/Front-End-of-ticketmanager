@@ -75,10 +75,11 @@ class AllTickets extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:8080/api/Ticket")
+    if(localStorage.getItem("SelectedProject") !== null){
+    axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
         .then(res => {
           for(var i=0; i<res.data.length; i++){
-            this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, "1224879671", res.data[i].creatorName, 
+            this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, res.data[i].uid, res.data[i].uid, 
             res.data[i].priority,  res.data[i].status, res.data[i].dateCreated, "Issue.png"] ]})
   
             this.setState({tids:[...this.state.tids, res.data[i].tid]})
@@ -88,6 +89,7 @@ class AllTickets extends Component {
 
           }
         )
+    }
 
   }
 

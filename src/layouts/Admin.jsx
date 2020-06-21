@@ -23,6 +23,8 @@ import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+import axios from "axios"
+
 
 import { style } from "variables/Variables.jsx";
 
@@ -41,9 +43,11 @@ class Admin extends Component {
       image: image,
       color: "#171F24",
       hasImage: false,
-      fixedClasses: "dropdown show-dropdown open"
+      fixedClasses: "dropdown show-dropdown open",
+      ProjectChosen:localStorage.getItem("NameOfChosenProject")
     };
   }
+
 
   // componentWillMount(){
   //   var tkts = JSON.parse(localStorage.getItem("tickets"))
@@ -170,6 +174,70 @@ class Admin extends Component {
     }
   };
   componentDidMount() {
+    var selected = null;
+    // console.log("the routes on the sidebar are", routes)
+    if(localStorage.getItem('SelectedProject') !== null){
+      // alert(localStorage.getItem('SelectedProject'))
+      selected = localStorage.getItem('SelectedProject');
+
+      console.log(selected)
+
+      
+      axios.get(`http://localhost:8080/api/Project/${selected}`)
+      .then(res => {
+        // console.log("res.data is", res.data)
+        localStorage.setItem("NameOfChosenProject", res.data.projectName)
+        // routes[5].name = localStorage.getItem("NameOfChosenProject")
+        // routes[5].Icon = "pe-7s-file"
+
+
+
+      })
+      if(localStorage.getItem("NameOfChosenProject") !== null){
+        // var srs = { 
+        //   name: localStorage.getItem("NameOfChosenProject"),
+        //   icon: "pe-7s-file",
+        //   // path: window.location.href,
+        //   layout: "/admin"
+        // }
+
+        var exists = false;
+
+        // for (var i=0; i<routes.length; i++) { //iterate through each object in an array
+        //   if (JSON.stringify(routes[i]) === JSON.stringify(srs) ) {
+        //           alert("EQUALS");
+        //           exists = true;
+        //    }
+        // }
+
+      if(exists === false){
+
+          routes.unshift({ 
+            name: "Project Name : " + localStorage.getItem("NameOfChosenProject"),
+            icon: "pe-7s-angle-right-circle",
+            type:"None"
+            // path: window.location.href,
+            // layout: "/admin"
+          })
+
+        
+      }
+
+
+
+      }
+
+      // this.setState({ProjectChosen:"Second choice"})
+
+
+
+
+    
+    }
+    // console.log("routes are", routes)
+    // console.log("state is", this.state)
+
+
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
