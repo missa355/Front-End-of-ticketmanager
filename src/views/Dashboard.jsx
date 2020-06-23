@@ -26,17 +26,38 @@ import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
 import {
-  dataPie,
-  legendPie,
+  // dataPie,
+  // legendPie,
   dataSales,
   optionsSales,
   responsiveSales,
   legendSales,
-  dataBar,
+  // dataBar,
   optionsBar,
   responsiveBar,
   legendBar
 } from "variables/Variables.jsx";
+
+// Data for Pie Chart
+var legendPie = {
+  names: ["Resloved", "Unresolved", "Urgent"],
+  types: ["info", "danger", "warning"]
+};
+//data for bars
+var dataBar = {
+  labels: [
+    "Software",
+    "Hardware",
+    "Networking",
+    "Logistics",
+    "Other"
+
+  ],
+  series: [
+    [20, 15, 30, 5, 6]
+  ]
+  ,
+};
 
 class Dashboard extends Component {
 
@@ -44,8 +65,18 @@ class Dashboard extends Component {
     NumberOfTickets:0,
     Resolved: 0,
     Unresolved: 0,
-    Urgent: 0
+    Urgent: 0,
+    dataPie : 
+    {
+      labels: ["40%", "20%", "40%"],
+      series: [40, 20, 40]
+    },
+    Software:0,
+    Hardware:0,
+    Network:0,
+    Logistics:0
   }
+
 
   componentDidMount = () => {
     if(localStorage.getItem("SelectedProject") !== null){
@@ -56,19 +87,50 @@ class Dashboard extends Component {
               var unresloved = 0;
               var urgent = 0;
 
+              var software = 0;
+              var hardware = 0;
+              var network = 0;
+              var logistics = 0;
+
               for(var i=0; i<res.data.length; i++){
-                if(res.data[i].status !== "resloved"){
+                if(res.data[i].status !== "Resolved"){
                   unresloved++;
                 }
-                if(res.data[i].status === "resolved"){
+                if(res.data[i].status === "Resolved"){
                   resloved++;
                 }
-                if(res.data[i].status === "urgent"){
+                if(res.data[i].priority === "Important" || res.data[i].priority === "Very Important"){
                   urgent++;
+                }
+                if(res.data[i].category === "Software"){
+                  software++
+                }
+                if(res.data[i].category === "Hardware"){
+                  hardware++
+                }
+                if(res.data[i].category === "Network"){
+                  network++
+                }
+                if(res.data[i].category === "Logistics"){
+                  logistics++
                 }
 
               }
+              var value1 = (resloved/(resloved + unresloved + urgent))*100
+              var value2 = (unresloved/(resloved + unresloved + urgent))*100
+              var value3 = (urgent/(resloved + unresloved + urgent))*100
+              
+              
+              this.setState({Software:software, Hardware:hardware, Network:network, Logistics:logistics})
+
+
               this.setState({Resolved:resloved, Unresolved:unresloved, Urgent:urgent})
+              this.setState({    dataPie : 
+                {
+                  labels: [(Math.floor(value1)).toString() + "%",(Math.floor(value2)).toString()+"%", (Math.floor(value3)).toString()+"%"],
+                  series: [value1, value2, value3]
+                }})
+
             // for(var i=0; i<res.data.length; i++){
             //   this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, "1224879671", res.data[i].creatorName, 
             //   res.data[i].priority,  res.data[i].status, res.data[i].dateCreated, "Issue.png"] ]})
@@ -95,6 +157,7 @@ class Dashboard extends Component {
     return legend;
   }
   render() {
+    
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>
@@ -148,7 +211,7 @@ class Dashboard extends Component {
                     id="chartPreferences"
                     className="ct-chart ct-perfect-fourth"
                   >
-                    <ChartistGraph data={dataPie} type="Pie" />
+                    <ChartistGraph data={this.state.dataPie} type="Pie" />
                   </div>
                 }
                 legend={
@@ -181,7 +244,7 @@ class Dashboard extends Component {
           </Row>
 
           <Row>
-            <Col md={4}>
+            <Col md={5}>
               <Card
                 id="chartActivity"
                 title="Categories"
@@ -191,7 +254,19 @@ class Dashboard extends Component {
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataBar}
+                      data={{
+                        labels: [
+                          "Software",
+                          "Hardware",
+                          "Networking",
+                          "Logistics"
+                      
+                        ],
+                        series: [
+                          [this.state.Software, this.state.Hardware, this.state.Network, this.state.Logistics]
+                        ]
+                        ,
+                      }}
                       type="Bar"
                       options={optionsBar}
                       responsiveOptions={responsiveBar}
@@ -204,7 +279,7 @@ class Dashboard extends Component {
               />
             </Col>
 
-            <Col md={8}>
+            <Col md={7}>
               <Card
                 title="Ticket Logs"
                 // category="Backend development"

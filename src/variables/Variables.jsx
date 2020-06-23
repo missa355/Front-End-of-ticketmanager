@@ -573,6 +573,10 @@ var optionsBar = {
   axisX: {
     showGrid: false
   },
+  axisY: {
+    onlyInteger: true,
+    offset: 20
+  },
   height: "245px",
 };
 var responsiveBar = [

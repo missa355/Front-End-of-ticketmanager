@@ -58,31 +58,71 @@ class SpecificTicket extends Component {
     event.preventDefault();
 
     var var1 = document.getElementById("formControlsCommmentArea").value;
+    var var2 = document.getElementById("formControlsTicketTitle").value;
+    var var3 = document.getElementById("formControlsCreator").value;
+    var var4 = document.getElementById("formControlsDate").value;
 
 
     Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
     .then(res => {
-      Axios.post("http://localhost:8080/api/Ticket", 
-      {
-        tid: res.data.tid,
-        pid: res.data.pid,
-        uid: res.data.uid,
-        dateCreated: res.data.dateCreated,
-        desc: res.data.desc,
-        comments:res.data.comments.concat(var1),
-        status: res.data.status,
-        priority: res.data.priority,
-        category: res.data.category,
-        ticketname: res.data.ticketname,
-        logs:res.data.logs
-        // CreatorName: "zenyatt12"
+      console.log("Title befor posting is", this.state.Title)
+      if(var1 === ""){
+        Axios.post("http://localhost:8080/api/Ticket", 
+        {
+          tid: res.data.tid,
+          pid: res.data.pid,
+          uid: this.state.uid,
+          dateCreated: res.data.dateCreated,
+          desc: this.state.Description,
+          comments:res.data.comments,
+          status: this.state.Status,
+          priority: this.state.Priority,
+          category: this.state.category,
+          Ticketname: this.state.Title,
+          logs:res.data.logs
+          // CreatorName: "zenyatt12"
+      }).then(res2 =>  console.log(res2))
+
+      }else{
+        Axios.post("http://localhost:8080/api/Ticket", 
+        {
+          tid: res.data.tid,
+          pid: res.data.pid,
+          uid: this.state.uid,
+          dateCreated: res.data.dateCreated,
+          desc: this.state.Description,
+          comments:res.data.comments.concat(var1),
+          status: this.state.Status,
+          priority: this.state.Priority,
+          category: this.state.category,
+          Ticketname: this.state.Title,
+          logs:res.data.logsS
+          // CreatorName: "zenyatt12"
+      }).then(res2 =>  console.log(res2))
+      }
+
+      // console.log(this.state)
     })
-      console.log(this.state)
-    })
+    setTimeout(()=>{window.location.reload();window.location.href = "http://localhost:3000/admin/AllTickets";  }, 1000)
+    // window.location.reload();
+
   }
 
   handleChange= (event) => {
     this.setState({Description: event.target.value});
+    console.log(this.state.Description)
+
+  }
+  handleChange2= (event) => {
+    this.setState({Title: event.target.value});
+    console.log(this.state.Title)
+
+  }
+  handleChange3= (event) => {
+    this.setState({uid: event.target.value});
+    console.log(this.state.uid)
+
+
   }
 
   componentDidMount(){
@@ -92,7 +132,7 @@ class SpecificTicket extends Component {
       this.setState({tid:res.data.tid, pid:res.data.pid, uid:res.data.uid, Title:res.data.ticketname, DateCreated:res.data.dateCreated, category:res.data.category,
                     Status:res.data.status, Priority:res.data.priority, Createdby:res.data.uid, Description:res.data.desc, Comments:res.data.comments
       })
-      console.log(this.state)
+      console.log(this.state, "state from server is")
     })
   }
 
@@ -106,35 +146,63 @@ class SpecificTicket extends Component {
                 title="Ticket info"
                 content={
                   <form>
-                    <FormInputs
-                      ncols={["col-md-5", "col-md-3", "col-md-4"]}
-                      properties={[
-                        {
-                          label: "Ticket Title",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Company",
-                          defaultValue: this.state.Title,
-                        },
-                        {
-                          label: "Created by",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Username",
-                          defaultValue: this.state.Createdby,
-                          disabled: true
-                        },
-                        {
-                          label: "Date Created",
-                          type: "text",
-                          bsClass: "form-control",
-                          defaultValue: this.state.DateCreated,
-                          placeholder: "DD/MM/YYYY",
-                          disabled: true
+                    <Row>
+                      <Col md={4}>
+                        <FormGroup controlId="formControlsTicketTitle">
+                          <ControlLabel>Ticket Title</ControlLabel>
+                          <FormControl
+                            rows="1"
+                            type = "text"
+                            bsClass="form-control"
+                            placeholder="Title"
+                            value={this.state.Title}
+                            onChange={this.handleChange2}
 
-                        }
-                      ]}
-                    />
+                            // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
+                            // playlist we get an issue with it calling another fuction who call the original function causing a 
+                            // loop."
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                      
+                      <Col md={4}>
+                        <FormGroup controlId="formControlsCreator">
+                          <ControlLabel>Creator ID</ControlLabel>
+                          <FormControl
+                            rows="1"
+                            type = "text"
+                            bsClass="form-control"
+                            placeholder="Enter UserID"
+                            value={this.state.uid}
+                            onChange={this.handleChange3}
+
+                            // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
+                            // playlist we get an issue with it calling another fuction who call the original function causing a 
+                            // loop."
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={4}>
+                        <FormGroup controlId="formControlsDate">
+                          <ControlLabel>Date Created</ControlLabel>
+                          <FormControl
+                            rows="1"
+                            type = "text"
+                            bsClass="form-control"
+                            // placeholder={dateTime}
+                            defaultValue={this.state.DateCreated}
+                            disabled={true}
+
+                            // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
+                            // playlist we get an issue with it calling another fuction who call the original function causing a 
+                            // loop."
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
                   
 
                     <Row>
