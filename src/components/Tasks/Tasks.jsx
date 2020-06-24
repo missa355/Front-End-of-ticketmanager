@@ -16,29 +16,58 @@
 
 */
 import React, { Component } from "react";
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
-import Button from "components/CustomButton/CustomButton.jsx";
+import axios from "axios"
+import { Link } from "react-router-dom";
+
 
 export class Tasks extends Component {
-  handleCheckbox = event => {
-    const target = event.target;
-    console.log(event.target);
-    this.setState({
-      [target.name]: target.checked
-    });
-  };
+  // handleCheckbox = event => {
+  //   const target = event.target;
+  //   console.log(event.target);
+  //   this.setState({
+  //     [target.name]: target.checked
+  //   });
+  // };
+
+  state = {
+    logs:[],
+    links:[]
+
+  }
+  componentDidMount = () => {
+    if(localStorage.getItem("SelectedProject") !== null){
+    axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
+        .then(res => {
+          for(var i=0; i<res.data.length; i++){
+            this.setState({logs:this.state.logs.concat(res.data[i].logs)})
+            for(var k=0; k<res.data[i].logs.length; k++){
+              console.log("insise Task")
+                this.setState({links:[...this.state.links, res.data[i].tid]})
+  
+              }
+
+
+  
+          }
+
+          console.log(this.state)
+
+          }
+        )
+    }
+
+  }
   render() {
-    const edit = <Tooltip id="edit_tooltip">Edit Task</Tooltip>;
-    const remove = <Tooltip id="remove_tooltip">Remove</Tooltip>;
+    // const edit = <Tooltip id="edit_tooltip">Edit Task</Tooltip>;
+    // const remove = <Tooltip id="remove_tooltip">Remove</Tooltip>;
     const tasks_title = [
       <div>
-      <p style={{display:"inline"}} className="text-info"><b>Ticket 1</b></p> 
-      <p style={{display:"inline"}} >: <b>Priority</b> changed from <b>Urgent</b> to <b>Normal</b></p> 
-      </div>,
-      <div>
-      <p style={{display:"inline"}} className="text-info"><b>Ticket 7</b></p> 
-      <p style={{display:"inline"}} >: <b>Status</b> changed from <b>New</b> to <b>In-Progress</b></p> 
+        {this.state.logs.map((block, i) => 
+            <div key={i}>
+              <Link to={`/admin/AllTickets/${this.state.links[i]}`}><p style={{display:"inline"}} className="text-info"><b>Update {i+1}</b></p> </Link>
+              <p style={{display:"inline", fontFamily:"Arial, Helvetica, sans-serif"}} >: {block} </p> 
+            </div>
+      )}
       </div>
     ];
     var tasks = [];

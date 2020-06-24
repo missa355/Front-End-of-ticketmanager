@@ -35,7 +35,29 @@ import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
 import Axios from "axios";
+import Select from 'react-select'
 
+
+
+
+
+const options = [
+  { value: 'Software', label: 'Software' },
+  { value: 'Network', label: 'Network' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Logistics', label: 'Logistics' }
+
+]
+const options2 = [
+  { value: 'New', label: 'New' },
+  { value: 'In-Progress', label: 'In-Progress' },
+  { value: 'Resolved', label: 'Resolved' }
+]
+const options3 = [
+  { value: 'Normal', label: 'Normal' },
+  { value: 'Important', label: 'Important' },
+  { value: 'Very Important', label: 'Very Important' }
+]
 class SpecificTicket extends Component {
 
   state = {
@@ -49,8 +71,8 @@ class SpecificTicket extends Component {
     Comments:[],
     category:"",
     Status:"",
-    Priority:""
-    // logs:[]
+    Priority:"",
+    logs:[]
 
   }
 
@@ -66,6 +88,22 @@ class SpecificTicket extends Component {
     Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
     .then(res => {
       console.log("Title befor posting is", this.state.Title)
+      //checking the logs
+      var log_container = res.data.logs.slice();
+      if(this.state.category !== res.data.category){
+        log_container.push(`Category`+ ` Changed from ${res.data.category} to ${this.state.category}`)
+
+      }
+      if(this.state.Status !== res.data.status){
+        log_container.push(`Status`+ ` Changed from ${res.data.status} to ${this.state.Status}`)
+
+      }
+      if(this.state.Priority !== res.data.priority){
+        log_container.push(`Priority`+ ` Changed from ${res.data.priority} to ${this.state.Priority}`)
+
+      }
+      //
+
       if(var1 === ""){
         Axios.post("http://localhost:8080/api/Ticket", 
         {
@@ -79,7 +117,7 @@ class SpecificTicket extends Component {
           priority: this.state.Priority,
           category: this.state.category,
           Ticketname: this.state.Title,
-          logs:res.data.logs
+          logs:log_container
           // CreatorName: "zenyatt12"
       }).then(res2 =>  console.log(res2))
 
@@ -96,7 +134,7 @@ class SpecificTicket extends Component {
           priority: this.state.Priority,
           category: this.state.category,
           Ticketname: this.state.Title,
-          logs:res.data.logsS
+          logs:log_container
           // CreatorName: "zenyatt12"
       }).then(res2 =>  console.log(res2))
       }
@@ -124,6 +162,20 @@ class SpecificTicket extends Component {
 
 
   }
+
+  //--------------
+  handleCategory = selectedOption => {
+    this.setState({category: selectedOption.value});
+    console.log(`Option selected:`, selectedOption);
+  };
+  handleStatus = selectedOption => {
+    this.setState({Status: selectedOption.value});
+    console.log(`Option selected:`, selectedOption);
+  };
+  handlePriority = selectedOption => {
+    this.setState({Priority: selectedOption.value});
+    console.log(`Option selected:`, selectedOption);
+  };
 
   componentDidMount(){
     // console.log(this.props.TicketId)
@@ -308,10 +360,23 @@ class SpecificTicket extends Component {
                 content={
                   <div className="table-full-width"  >
                     <table className="table">
-                      <TicketStatus status={this.state.Status} priority={this.state.Priority} category={this.state.category} />
+                      <tbody>
+                        <tr></tr>
+                        <tr><td><h5>Category</h5></td><td> <Select placeholder={this.state.category} options={options} onChange={this.handleCategory}  /></td></tr>
+                        <tr><td><h5>Status</h5></td><td> <Select placeholder={this.state.Status} options={options2} onChange={this.handleStatus} /></td></tr>
+                        <tr><td><h5>Priority</h5></td><td> <Select placeholder={this.state.Priority} options={options3} onChange={this.handlePriority} /></td></tr>
+
+                      </tbody>
                     </table>
                   </div>
                 }
+                // content={
+                //   <div className="table-full-width"  >
+                //     <table className="table">
+                //       <TicketStatus status={this.state.Status} priority={this.state.Priority} category={this.state.category} />
+                //     </table>
+                //   </div>
+                // }
               />
             </Col>
           </Row>

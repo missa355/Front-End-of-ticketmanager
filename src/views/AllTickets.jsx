@@ -64,14 +64,7 @@ class AllTickets extends Component {
 
   state = {
     tids:[],
-    tdArray : [
-      // [ "Software" , "1224879671" , "Missa355" , "Urgent" , "In-progress", "5/29/2020", "Issue.png" ] ,
-      // [ "Software" , "1224879671" , "Missa355" , "Urgent" , "In-progress", "5/29/2020", "Issue.png" ] ,
-      // [ "Software" , "1224879671" , "Missa355" , "Urgent" , "In-progress", "5/29/2020", "Issue.png" ] ,
-      // [ "Software" , "1224879671" , "Missa355" , "Urgent" , "In-progress", "5/29/2020", "Issue.png" ] 
-    ]
-
-
+    tdArray : []
   }
 
   componentDidMount = () => {
