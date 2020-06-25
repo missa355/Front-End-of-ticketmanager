@@ -24,6 +24,7 @@ import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import axios from "axios"
+import Signup from "views/Singup/Signup"
 
 
 import { style } from "variables/Variables.jsx";
@@ -310,6 +311,7 @@ class Admin extends Component {
             fixedClasses={this.state.fixedClasses}
           /> */}
         </div>
+
       </div>
     );
   }

@@ -120,6 +120,13 @@ var TicketRoutes = [
     component: Notifications,
     layout: "/admin"
   },
+  // {
+  //   path: "/Singup",
+  //   name: "Notifications",
+  //   icon: "pe-7s-bell",
+  //   component: Notifications,
+  //   layout: "/admin"
+  // },
   {
     upgrade: true,
     path: "/CreateProject",

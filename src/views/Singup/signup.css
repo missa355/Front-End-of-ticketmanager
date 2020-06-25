@@ -1,0 +1,31 @@
+.signup{
+    float: left;
+    height: 30%;
+    width: 33%;
+    background-color: rgba(226, 231, 245, 1);
+    margin: 5% 0 0 33%;
+    color: white;
+    padding: 40px;
+    border-radius: 30px;
+    background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19); 
+    /* border: black 2px solid;
+}
+hr{
+    /* background-color: rgb(255, 255, 255) */
+}
+.input_block{
+    /* background-color: rgba(232, 240, 243, 0.048); */
+    /* border: 1px rgb(250, 248, 248) solid; */
+}
+/* .input_block::placeholder{
+    color: white;
+} */
+.input_block{
+    background-color: rgb(255, 255, 255);
+    color: rgb(17, 16, 16);
+}   
