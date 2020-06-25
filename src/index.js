@@ -29,7 +29,6 @@ import "./assets/css/pe-icon-7-stroke.css";
 
 import AdminLayout from "layouts/Admin.jsx";
 import Dashboard from "views/Dashboard";
-import Signup from "views/Singup/Signup"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -45,11 +44,6 @@ ReactDOM.render(
     /> */}
 
     <Switch>
-      <Route exact path="/admin/Singup" render={ props =>(
-            <React.Fragment>
-              <Signup {...props}/>
-            </React.Fragment>
-          )}/>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       {/* <Route path="/developer" render={props => <AdminLayout {...props} />} />
       <Route path="/user" render={props => <AdminLayout {...props} />} />
