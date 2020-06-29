@@ -79,9 +79,19 @@ class Dashboard extends Component {
 
 
   componentDidMount = () => {
+    
+    //
     if(localStorage.getItem("SelectedProject") !== null){
-      axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
+      axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      // {
+      //   auth: {
+      //       username: "user",
+      //       password: "5ac4ea64-9229-4522-adc3-127ec2939ea0"
+      //   }
+      // }
+    )
           .then(res => {
+              console.log(res)
               this.setState({NumberOfTickets:res.data.length})
               var resloved = 0;
               var unresloved = 0;

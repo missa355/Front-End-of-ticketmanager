@@ -29,6 +29,7 @@ import SpecificProject from "views/SpecificProject.jsx"
 import CreateTicket from "views/CreateTicket.jsx"
 import Axios from "axios";
 import CreateProject from "views/CreateProject";
+import Login from "views/Login";
 
 
 
@@ -118,6 +119,13 @@ var TicketRoutes = [
     name: "Notifications",
     icon: "pe-7s-bell",
     component: Notifications,
+    layout: "/admin"
+  },
+  {
+    path: "/Login",
+    name: "Login",
+    icon: "pe-7s-bell",
+    component: Login,
     layout: "/admin"
   },
   {

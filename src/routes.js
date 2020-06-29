@@ -68,6 +68,13 @@ const dashboardRoutes = [
     component: AllTicket,
     layout: "/admin"
   },
+  {
+    path: "/Login",
+    name: "Login",
+    icon: "pe-7s-bell",
+    component: UserProfile,
+    layout: "/admin"
+  },
 
   {
     path: "/user",

@@ -156,7 +156,10 @@ class SpecificTicket extends Component {
     }
       console.log(ticketjson)
 
-      axios.post("http://localhost:8080/api/Ticket", ticketjson)
+      axios.post("http://localhost:8080/api/Ticket", ticketjson, {  auth: {
+        user: 'user',
+        password: 'a8904819-9fe0-43f2-b8b8-5cd76859ac04',
+      }})
       .then(res => console.log(res))
 
       // axios.get("http://localhost:8080/api/Ticket")
@@ -170,7 +173,7 @@ class SpecificTicket extends Component {
     //     .then(res => console.log(res))
     // window.location.reload(true);
 
-    window.location.href = "http://localhost:3000/admin/AllTickets";
+    // window.location.href = "http://localhost:3000/admin/AllTickets";
 
 
 
