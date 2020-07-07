@@ -21,7 +21,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import axios from "axios"
 
 import AllTickets from "../views/AllTickets"
-
+import {Redirect} from "react-router-dom"
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
@@ -167,6 +167,9 @@ class Dashboard extends Component {
     return legend;
   }
   render() {
+    if(localStorage.getItem("Authorization") === "false" || localStorage.getItem("Authorization") === null){
+      return (<Redirect to="/admin/Login"/>)
+    }
     
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>

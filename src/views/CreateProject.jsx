@@ -15,6 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import {Redirect} from "react-router-dom"
+
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
@@ -220,6 +222,10 @@ class CreateProject extends Component {
   }
 
   render() {
+    if(localStorage.getItem("Authorization") === "false" || localStorage.getItem("Authorization") === null){
+      return (<Redirect to="/admin/Login"/>)
+    }
+
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>

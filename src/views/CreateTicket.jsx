@@ -20,6 +20,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
 import axios from "axios"
 import {Link} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 
 
 import 'react-tabs/style/react-tabs.css';
@@ -182,6 +183,10 @@ class SpecificTicket extends Component {
   }
 
   render() {
+    if(localStorage.getItem("Authorization") === "false" || localStorage.getItem("Authorization") === null){
+      return (<Redirect to="/admin/Login"/>)
+    }
+
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>

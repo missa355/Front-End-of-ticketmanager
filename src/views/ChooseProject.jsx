@@ -15,6 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import {Redirect} from "react-router-dom"
+
 import React, { Component } from "react";
 import {
   Grid,
@@ -76,7 +78,7 @@ class AllTickets extends Component {
     }
 
   componentDidMount = () => {
-      Axios.get("http://localhost:8080/api/Project")
+      Axios.get("http://localhost:8080/api/Project/uid/missa355")
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
@@ -95,12 +97,15 @@ class AllTickets extends Component {
       localStorage.setItem("NameOfChosenProject", this.state.Pnames[key])
 
       console.log(localStorage.getItem("SelectedProject"))
-      window.location.href = "http://localhost:3000/admin/dashboard";
+    //   window.location.href = "http://localhost:3000/admin/dashboard";
 
   }
 
   
   render() {
+    if(localStorage.getItem("Authorization") === "false" || localStorage.getItem("Authorization") === null){
+        return (<Redirect to="/admin/Login"/>)
+      }
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>
       {/* <Tooltip id="edit_tooltip">Edit Task</Tooltip> */}

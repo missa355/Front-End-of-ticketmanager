@@ -135,6 +135,18 @@ class SpecificProject extends Component {
 
   }
 
+  handleChange2= (event) => {
+    this.setState({Title: event.target.value});
+    console.log(this.state.Title)
+
+  }
+  handleChange3= (event) => {
+    this.setState({uid: event.target.value});
+    console.log(this.state.Createdby)
+
+
+  }
+
   handleChange= (event) => {
     this.setState({Description: event.target.value});
 
@@ -172,7 +184,7 @@ class SpecificProject extends Component {
       <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <Card
                 title="Project info"
                 content={
@@ -187,6 +199,8 @@ class SpecificProject extends Component {
                             bsClass="form-control"
                             placeholder="Title"
                             value={this.state.Title}
+                            onChange={this.handleChange2}
+
                             // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
                             // playlist we get an issue with it calling another fuction who call the original function causing a 
                             // loop."
@@ -204,6 +218,7 @@ class SpecificProject extends Component {
                             bsClass="form-control"
                             placeholder="Enter ID"
                             value={this.state.Createdby}
+                            onChange={this.handleChange3}
                             // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
                             // playlist we get an issue with it calling another fuction who call the original function causing a 
                             // loop."
@@ -369,21 +384,6 @@ class SpecificProject extends Component {
               />
             </Col>
             {/* Information of person who created the Ticket if you want to directly contact them */}
-            <Col md={4}>
-            <Card
-                title="Ticket"
-                // category="Backend development"
-                stats="Updated 3 minutes ago"
-                statsIcon="fa fa-history"
-                content={
-                  <div className="table-full-width"  >
-                    <table className="table">
-                      <TicketStatus status={this.state.Status} priority={this.state.Priority} category={this.state.category} />
-                    </table>
-                  </div>
-                }
-              />
-            </Col>
           </Row>
         </Grid>
       </div>
