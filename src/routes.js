@@ -19,18 +19,18 @@ import Dashboard from "views/Dashboard.jsx";
 import ChooseProject from "views/ChooseProject";
 import UserProfile from "views/UserProfile.jsx";
 import AllTicket from "views/AllTickets.jsx";
-import TableList from "views/TableList.jsx";
-import Typography from "views/Typography.jsx";
-import SpecificTicket from "views/SpecificTicket.jsx"
-import Icons from "views/Icons.jsx";
-import Maps from "views/Maps.jsx";
-import Notifications from "views/Notifications.jsx";
-import Upgrade from "views/Upgrade.jsx";
+// import TableList from "views/TableList.jsx";
+// import Typography from "views/Typography.jsx";
+// import SpecificTicket from "views/SpecificTicket.jsx"
+// import Icons from "views/Icons.jsx";
+// import Maps from "views/Maps.jsx";
+// import Notifications from "views/Notifications.jsx";
+// import Upgrade from "views/Upgrade.jsx";
 import CreateTicket from "views/CreateTicket.jsx"
 import CreateProject from "views/CreateProject";
 
 
-var ids = [1, 2, 3]
+// var ids = [1, 2, 3]
 
 const dashboardRoutes = [
   // {

@@ -19,26 +19,25 @@ import {Redirect} from "react-router-dom"
 
 import React, { Component } from "react";
 import {
-  Grid,
+  // Grid,
   Row,
   Col,
-  FormGroup,
-  ControlLabel,
-  FormControl
+  // FormGroup,
+  // ControlLabel,
+  // FormControl
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
+// import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+// import { UserCard } from "components/UserCard/UserCard.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import { Table } from 'react-bootstrap'
 import {Tooltip,OverlayTrigger} from 'react-bootstrap';
-import axios from "axios"
 import "css_assets/project.css"
 
 
-import avatar from "assets/img/faces/face-3.jpg";
+// import avatar from "assets/img/faces/face-3.jpg";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 

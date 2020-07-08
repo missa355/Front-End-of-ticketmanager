@@ -28,7 +28,7 @@ import "./assets/css/pe-icon-7-stroke.css";
 
 
 import AdminLayout from "layouts/Admin.jsx";
-import Dashboard from "views/Dashboard";
+// import Dashboard from "views/Dashboard";
 
 ReactDOM.render(
   <BrowserRouter>

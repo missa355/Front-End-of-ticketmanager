@@ -17,9 +17,9 @@
 */
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
+// import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
 import axios from "axios"
-import {Link} from "react-router-dom"
+// import {Link} from "react-router-dom"
 import {Redirect} from "react-router-dom"
 
 
@@ -34,8 +34,8 @@ import {
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
+// import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+// import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -59,17 +59,17 @@ const options3 = [
   { value: 'Very Important', label: 'Very Important' }
 ]
 
-const MyComponent = () => (
-  <tbody>
-    <tr></tr>
-    <tr><td><h5>Category</h5></td><td> <Select options={options}  onChange={this.handleChange}/></td></tr>
-    <tr><td><h5>Status</h5></td><td> <Select options={options2} /></td></tr>
-    <tr><td><h5>Priority</h5></td><td> <Select options={options3} /></td></tr>
+// const MyComponent = () => (
+//   <tbody>
+//     <tr></tr>
+//     <tr><td><h5>Category</h5></td><td> <Select options={options}  onChange={this.handleChange}/></td></tr>
+//     <tr><td><h5>Status</h5></td><td> <Select options={options2} /></td></tr>
+//     <tr><td><h5>Priority</h5></td><td> <Select options={options3} /></td></tr>
 
-  </tbody>
+//   </tbody>
 
 
-)
+// )
 
 
 

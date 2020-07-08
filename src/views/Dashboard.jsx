@@ -35,7 +35,7 @@ import {
   // dataBar,
   optionsBar,
   responsiveBar,
-  legendBar
+  // legendBar
 } from "variables/Variables.jsx";
 
 // Data for Pie Chart

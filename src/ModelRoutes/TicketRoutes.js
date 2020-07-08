@@ -36,7 +36,7 @@ import Login from "views/Login";
 //this is the part to get all tickets and projects
 //...
 // console.log("insode routes")
-var Tickteids = [];
+// var Tickteids = [];
 
 
 //
@@ -178,16 +178,15 @@ Axios.get("http://localhost:8080/api/Project") //this gets all tickets
   var projects = JSON.parse(localStorage.getItem("projects"))
 
 if(projects !== null){
-  var i = 0;
-  for(i=0; i<projects.length; i++){
+  for(var k=0; k<projects.length; k++){
     TicketRoutes.unshift(
       {
-        path: `/ChooseProject/${projects[i].pid}`,
+        path: `/ChooseProject/${projects[k].pid}`,
         name: "Project",
         icon: "pe-7s-file",
         component: SpecificProject,
         layout: "/admin",
-        ProjectId:projects[i].pid
+        ProjectId:projects[k].pid
       }
     )
     // console.log(projects[i])

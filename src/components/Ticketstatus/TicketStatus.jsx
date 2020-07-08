@@ -16,9 +16,9 @@
 
 */
 import React, { Component } from "react";
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
-import Button from "components/CustomButton/CustomButton.jsx";
+// import { Tooltip, OverlayTrigger } from "react-bootstrap";
+// import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
+// import Button from "components/CustomButton/CustomButton.jsx";
 
 
 export class TicketStatus extends Component {

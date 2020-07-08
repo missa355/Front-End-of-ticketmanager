@@ -22,9 +22,9 @@ import NotificationSystem from "react-notification-system";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import axios from "axios"
-import Signup from "views/Singup/Signup"
+// import Signup from "views/Singup/Signup"
 
 
 import { style } from "variables/Variables.jsx";
@@ -33,8 +33,8 @@ import routes from "routes.js";
 import TicketRoutes from "ModelRoutes/TicketRoutes"
 
 import image from "assets/img/sidebar-3.jpg";
-import SpecificTicket from "views/SpecificTicket";
-import Dashboard from "views/Dashboard";
+// import SpecificTicket from "views/SpecificTicket";
+// import Dashboard from "views/Dashboard";
 
 class Admin extends Component {
   constructor(props) {

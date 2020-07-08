@@ -18,8 +18,8 @@
 import {Redirect} from "react-router-dom"
 
 import React, { Component } from "react";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import { AddTicketStatus } from "components/AddTicketStatus/AddTicketStatus.jsx";
 import axios from "axios"
 import {Link} from "react-router-dom"
 
@@ -35,18 +35,18 @@ import {
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
+// import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+// import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import { v4 as uuidv4 } from 'uuid';
 
 
-import avatar from "assets/img/faces/face-3.jpg";
+// import avatar from "assets/img/faces/face-3.jpg";
 
 var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
 var today = new Date(usaTime);
 var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-var time = today.getHours() + ":" + today.getMinutes();
+// var time = today.getHours() + ":" + today.getMinutes();
 var dateTime = date+' '+formatAMPM(today);
 // var dateTime = dateTime.toString();
 
@@ -93,23 +93,24 @@ class CreateProject extends Component {
 
 
     console.log(var4)
+    var project = null;
 
 
     if(splitted1 === true && splitted2 === true){
       
-      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:var4}
+      project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:var4}
 
     }
     else if(splitted1 === true){
-      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:[var4]}
+      project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:var3, projectManagers:[var4]}
 
     }
     else if(splitted2 === true){
-      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:var4}
+      project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:var4}
 
     }
     else if(splitted1 === false && splitted2 === false){
-      var project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:[var4]}
+      project = {pid:uuidv4(), projectName:var1, dateCreated:var2, members:[var3], projectManagers:[var4]}
 
     }
     

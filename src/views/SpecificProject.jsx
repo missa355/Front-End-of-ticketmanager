@@ -16,8 +16,6 @@
 
 */
 import React, { Component } from "react";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { TicketStatus } from "components/Ticketstatus/TicketStatus.jsx";
 import 'react-tabs/style/react-tabs.css';
 import {
   Grid,
@@ -29,11 +27,8 @@ import {
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
-import avatar from "assets/img/faces/face-3.jpg";
 import Axios from "axios";
 
 class SpecificProject extends Component {
