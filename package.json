@@ -2,6 +2,7 @@
   "name": "light-bootstrap-dashboard-react",
   "version": "1.3.0",
   "private": true,
+  "homepage": "https://august-storm-138923.web.app/",
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@types/reactstrap": "^8.4.3",
@@ -28,7 +29,7 @@
     "@types/googlemaps": "3.30.19",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.8.13",
-    "typescript": "3.4.3"
+    "typescript": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

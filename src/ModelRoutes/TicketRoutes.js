@@ -148,7 +148,11 @@ Axios.get("http://localhost:8080/api/Ticket") //this gets all tickets
 
   var tkts = JSON.parse(localStorage.getItem("tickets"))
 
+  console.log(tkts, "tkts")
+  if(tkts === null){
+    tkts = []
 
+}
 var i = 0;
 for(i=0; i<tkts.length; i++){
   TicketRoutes.unshift(
