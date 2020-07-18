@@ -141,7 +141,7 @@ var TicketRoutes = [
 
 
 
-Axios.get("http://localhost:8080/api/Ticket") //this gets all tickets
+Axios.get("https://webticket.mooo.com/api/Ticket") //this gets all tickets
 .then(res => {
   localStorage.setItem("tickets", JSON.stringify(res.data))
   }); 
@@ -170,7 +170,7 @@ for(i=0; i<tkts.length; i++){
   
 }
 //Adding the project pages
-Axios.get("http://localhost:8080/api/Project") //this gets all tickets
+Axios.get("https://webticket.mooo.com/api/Project") //this gets all tickets
 .then(res => {
   localStorage.setItem("projects", JSON.stringify(res.data))
   }); 

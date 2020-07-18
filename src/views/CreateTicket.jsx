@@ -108,7 +108,7 @@ class SpecificTicket extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/api/Ticket")
+    axios.get("https://webticket.mooo.com/api/Ticket")
         .then(res => console.log(res.data))
 
   }
@@ -157,7 +157,7 @@ class SpecificTicket extends Component {
     }
       console.log(ticketjson)
 
-      axios.post("http://localhost:8080/api/Ticket", ticketjson, {  auth: {
+      axios.post("https://webticket.mooo.com/api/Ticket", ticketjson, {  auth: {
         user: 'user',
         password: 'a8904819-9fe0-43f2-b8b8-5cd76859ac04',
       }})

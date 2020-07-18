@@ -41,7 +41,7 @@ class Login extends Component {
     var var2 = document.getElementById("formControlsPasswordLogin").value.trim()
 
     if(var1 !== "" && var2 !== ""){
-      axios.get(`http://localhost:8080/api/User/login/${var1}/${var2}`)
+      axios.get(`https://webticket.mooo.com/api/User/login/${var1}/${var2}`)
       .then(res => 
         {
           console.log(res);
@@ -62,7 +62,7 @@ class Login extends Component {
     var var4 = document.getElementById("formControlsLastname").value.trim()
 
     if(var1 !== "" && var2 !== "" && var3 !== "" && var4 !== ""){
-      axios.post("http://localhost:8080/api/User", {uid:var1, Password:var2, Firstname:var3, Lastname:var4, projectIds:[]})
+      axios.post("https://webticket.mooo.com/api/User", {uid:var1, Password:var2, Firstname:var3, Lastname:var4, projectIds:[]})
       .then(res => console.log(res))
     }
 

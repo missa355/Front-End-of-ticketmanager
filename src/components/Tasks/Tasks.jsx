@@ -36,7 +36,7 @@ export class Tasks extends Component {
   }
   componentDidMount = () => {
     if(localStorage.getItem("SelectedProject") !== null){
-    axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
+    axios.get(`https://webticket.mooo.com/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
         .then(res => {
           for(var i=0; i<res.data.length; i++){
             this.setState({logs:this.state.logs.concat(res.data[i].logs)})

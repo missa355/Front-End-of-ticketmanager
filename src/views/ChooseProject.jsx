@@ -77,7 +77,7 @@ class AllTickets extends Component {
     }
 
   componentDidMount = () => {
-      Axios.get("http://localhost:8080/api/Project/uid/missa355")
+      Axios.get("https://webticket.mooo.com/api/Project/uid/missa355")
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})

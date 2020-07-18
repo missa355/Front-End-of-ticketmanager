@@ -82,7 +82,7 @@ class Dashboard extends Component {
     
     //
     if(localStorage.getItem("SelectedProject") !== null){
-      axios.get(`http://localhost:8080/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      axios.get(`https://webticket.mooo.com/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
       // {
       //   auth: {
       //       username: "user",

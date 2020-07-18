@@ -85,7 +85,7 @@ class SpecificTicket extends Component {
     var var4 = document.getElementById("formControlsDate").value;
 
 
-    Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
+    Axios.get(`https://webticket.mooo.com/api/Ticket/${this.props.TicketId}`)
     .then(res => {
       console.log("Title befor posting is", this.state.Title)
       //checking the logs
@@ -105,7 +105,7 @@ class SpecificTicket extends Component {
       //
 
       if(var1 === ""){
-        Axios.post("http://localhost:8080/api/Ticket", 
+        Axios.post("https://webticket.mooo.com/api/Ticket", 
         {
           tid: res.data.tid,
           pid: res.data.pid,
@@ -122,7 +122,7 @@ class SpecificTicket extends Component {
       }).then(res2 =>  console.log(res2))
 
       }else{
-        Axios.post("http://localhost:8080/api/Ticket", 
+        Axios.post("https://webticket.mooo.com/api/Ticket", 
         {
           tid: res.data.tid,
           pid: res.data.pid,
@@ -179,7 +179,7 @@ class SpecificTicket extends Component {
 
   componentDidMount(){
     // console.log(this.props.TicketId)
-    Axios.get(`http://localhost:8080/api/Ticket/${this.props.TicketId}`)
+    Axios.get(`https://webticket.mooo.com/api/Ticket/${this.props.TicketId}`)
     .then(res => {
       this.setState({tid:res.data.tid, pid:res.data.pid, uid:res.data.uid, Title:res.data.ticketname, DateCreated:res.data.dateCreated, category:res.data.category,
                     Status:res.data.status, Priority:res.data.priority, Createdby:res.data.uid, Description:res.data.desc, Comments:res.data.comments
