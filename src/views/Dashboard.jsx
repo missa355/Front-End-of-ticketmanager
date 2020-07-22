@@ -82,7 +82,7 @@ class Dashboard extends Component {
     
     //
     if(localStorage.getItem("SelectedProject") !== null){
-      axios.get(`https://webticket.mooo.com/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      axios.get(`https://teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
       // {
       //   auth: {
       //       username: "user",
@@ -310,7 +310,9 @@ class Dashboard extends Component {
           </Row>
           <Row>
             <Col md={12}>
-              <Card
+              <AllTickets/>
+
+              {/* <Card
                     title="Tickets"
                     category="All Departments"
                     stats="Updated 3 minutes ago"
@@ -318,7 +320,7 @@ class Dashboard extends Component {
                     content={
                       <AllTickets/>
                     }
-                  />           
+                  />            */}
             </Col>
           </Row>
         </Grid>

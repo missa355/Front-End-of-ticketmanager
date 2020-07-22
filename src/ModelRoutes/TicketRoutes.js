@@ -136,12 +136,21 @@ var TicketRoutes = [
     component: CreateProject,
     layout: "/admin"
   }
+  // ,
+  // {
+  //   path: "/dashboard",
+  //   name: "click here for demo ",
+  //   icon: "pe-7s-bookmarks",
+  //   component: Dashboard,
+  //   layout: "/admin",
+  //   demo:true
+  // }
   
 ];
 
 
 
-Axios.get("https://webticket.mooo.com/api/Ticket") //this gets all tickets
+Axios.get("https://teaaurora.ngrok.io/api/Ticket") //this gets all tickets
 .then(res => {
   localStorage.setItem("tickets", JSON.stringify(res.data))
   }); 
@@ -170,7 +179,7 @@ for(i=0; i<tkts.length; i++){
   
 }
 //Adding the project pages
-Axios.get("https://webticket.mooo.com/api/Project") //this gets all tickets
+Axios.get("https://teaaurora.ngrok.io/api/Project") //this gets all tickets
 .then(res => {
   localStorage.setItem("projects", JSON.stringify(res.data))
   }); 

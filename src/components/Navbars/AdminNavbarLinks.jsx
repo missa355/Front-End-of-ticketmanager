@@ -53,7 +53,7 @@ class AdminNavbarLinks extends Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          <NavItem eventKey={1} href="/admin/user">
             Account
           </NavItem>
           <NavDropdown
@@ -69,7 +69,10 @@ class AdminNavbarLinks extends Component {
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="#">
+          <NavItem eventKey={3} href="#" onClick={() => {
+            localStorage.clear(); 
+            setTimeout(()=>{window.location.reload()}, 1000)
+            }}>
             Log out
           </NavItem>
         </Nav>

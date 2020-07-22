@@ -29,6 +29,8 @@ import { Card } from "components/Card/Card.jsx";
 // import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 // import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
+import { Redirect } from 'react-router-dom'
+
 
 import axios from "axios"
 
@@ -41,7 +43,7 @@ class Login extends Component {
     var var2 = document.getElementById("formControlsPasswordLogin").value.trim()
 
     if(var1 !== "" && var2 !== ""){
-      axios.get(`https://webticket.mooo.com/api/User/login/${var1}/${var2}`)
+      axios.get(`https://teaaurora.ngrok.io/api/User/login/${var1}/${var2}`)
       .then(res => 
         {
           console.log(res);
@@ -51,6 +53,10 @@ class Login extends Component {
         })
 
     }
+
+    setTimeout(() => {window.location.reload()}, 2000)
+    // window.location.reload();
+
 
   }
 
@@ -62,7 +68,7 @@ class Login extends Component {
     var var4 = document.getElementById("formControlsLastname").value.trim()
 
     if(var1 !== "" && var2 !== "" && var3 !== "" && var4 !== ""){
-      axios.post("https://webticket.mooo.com/api/User", {uid:var1, Password:var2, Firstname:var3, Lastname:var4, projectIds:[]})
+      axios.post("https://teaaurora.ngrok.io/api/User", {uid:var1, Password:var2, Firstname:var3, Lastname:var4, projectIds:[]})
       .then(res => console.log(res))
     }
 
@@ -71,6 +77,11 @@ class Login extends Component {
 
 
   render() {
+    if(localStorage.getItem("Authorization")){
+      return(<div><Redirect to="/admin/dashboard" /></div>)
+
+
+    }
     return (
       <div className="content" style={{backgroundColor:"#171F24"}}>
         <Grid fluid>

@@ -77,7 +77,7 @@ class AllTickets extends Component {
     }
 
   componentDidMount = () => {
-      Axios.get("https://webticket.mooo.com/api/Project/uid/missa355")
+      Axios.get("https://teaaurora.ngrok.io/api/Project/uid/missa355")
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
@@ -97,6 +97,11 @@ class AllTickets extends Component {
 
       console.log(localStorage.getItem("SelectedProject"))
     //   window.location.href = "http://localhost:3000/admin/dashboard";
+    setTimeout(() => {
+        window.location.reload();
+        window.location.href="/admin/dashboard"
+    }, 2000)
+
 
   }
 

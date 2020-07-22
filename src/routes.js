@@ -117,8 +117,16 @@ const dashboardRoutes = [
     name: "Create a Project",
     icon: "pe-7s-plus",
     component: CreateProject,
-    layout: "/admin"
+    layout: "/admin",
   }
+  // ,
+  // {
+  //   path: "/dashboard",
+  //   name: "click here for demo ",
+  //   icon: "pe-7s-bookmarks",
+  //   component: Dashboard,
+  //   layout: "/admin"
+  // }
 ];
 
 export default dashboardRoutes;
