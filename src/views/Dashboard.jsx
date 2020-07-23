@@ -79,6 +79,8 @@ class Dashboard extends Component {
 
 
   componentDidMount = () => {
+    // localStorage.setItem("SelectedProject", "175faa0e-b2bf-4c9d-8d45-984c03e7f93b")
+    // localStorage.setItem("NameOfChosenProject", "MickeiScoop")
     
     //
     if(localStorage.getItem("SelectedProject") !== null){

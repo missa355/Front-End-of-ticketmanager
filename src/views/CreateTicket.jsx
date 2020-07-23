@@ -163,6 +163,11 @@ class SpecificTicket extends Component {
       }})
       .then(res => console.log(res))
 
+      setTimeout(()=>{
+        window.location.reload()
+        window.location.href="/admin/AllTickets"  
+      })
+
       // axios.get("http://localhost:8080/api/Ticket")
       // .then(res => console.log(res))
 
@@ -221,6 +226,8 @@ class SpecificTicket extends Component {
                             type = "text"
                             bsClass="form-control"
                             placeholder="Enter UserID"
+                            defaultValue={localStorage.getItem("username")}
+                            disabled={true}
                             // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
                             // playlist we get an issue with it calling another fuction who call the original function causing a 
                             // loop."

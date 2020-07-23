@@ -73,11 +73,20 @@ class AllTickets extends Component {
     state = {
         pids:[],
         tdArray:[],
-        Pnames:[]
+        Pnames:[],
+        NumberOfTickets:0,
+        Resolved: 0,
+        Unresolved: 0,
+        Urgent: 0,
+        Software:0,
+        Hardware:0,
+        Network:0,
+        Logistics:0
     }
 
   componentDidMount = () => {
-      Axios.get("https://teaaurora.ngrok.io/api/Project/uid/missa355")
+    console.log(localStorage.getItem("username"))
+      Axios.get(`https://teaaurora.ngrok.io/api/Project/uid/${localStorage.getItem("username")}`)
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
@@ -87,6 +96,71 @@ class AllTickets extends Component {
           }
 
     })
+    if(localStorage.getItem("SelectedProject") !== null){
+      Axios.get(`https://teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      // {
+      //   auth: {
+      //       username: "user",
+      //       password: "5ac4ea64-9229-4522-adc3-127ec2939ea0"
+      //   }
+      // }
+    )
+          .then(res => {
+              console.log(res)
+              this.setState({NumberOfTickets:res.data.length})
+              var resloved = 0;
+              var unresloved = 0;
+              var urgent = 0;
+
+              var software = 0;
+              var hardware = 0;
+              var network = 0;
+              var logistics = 0;
+
+              for(var i=0; i<res.data.length; i++){
+                if(res.data[i].status !== "Resolved"){
+                  unresloved++;
+                }
+                if(res.data[i].status === "Resolved"){
+                  resloved++;
+                }
+                if(res.data[i].priority === "Important" || res.data[i].priority === "Very Important"){
+                  urgent++;
+                }
+                if(res.data[i].category === "Software"){
+                  software++
+                }
+                if(res.data[i].category === "Hardware"){
+                  hardware++
+                }
+                if(res.data[i].category === "Network"){
+                  network++
+                }
+                if(res.data[i].category === "Logistics"){
+                  logistics++
+                }
+
+              }
+
+              
+              
+              this.setState({Software:software, Hardware:hardware, Network:network, Logistics:logistics})
+
+
+              this.setState({Resolved:resloved, Unresolved:unresloved, Urgent:urgent})
+
+            // for(var i=0; i<res.data.length; i++){
+            //   this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, "1224879671", res.data[i].creatorName, 
+            //   res.data[i].priority,  res.data[i].status, res.data[i].dateCreated, "Issue.png"] ]})
+    
+            //   this.setState({tids:[...this.state.tids, res.data[i].tid]})
+            // }
+  
+            // console.log(this.state)
+  
+            }
+          )
+      }
 
   }
 
@@ -162,7 +236,7 @@ class AllTickets extends Component {
                     <StatsCard
                             bigIcon={<i className="pe-7s-ticket" />}
                             statsText="Total Tickets filed"
-                            statsValue="15"
+                            statsValue={this.state.NumberOfTickets}
                             statsIcon={<i className="fa fa-refresh" />}
                             statsIconText="Updated now"
                         />
@@ -171,7 +245,7 @@ class AllTickets extends Component {
                     <StatsCard
                         bigIcon={<i className="pe-7s-ticket" />}
                         statsText="Total Tickets Resolved"
-                        statsValue="13"
+                        statsValue={this.state.Resolved}
                         statsIcon={<i className="fa fa-calendar-o" />}
                         statsIconText="Last day"
                     />
@@ -184,7 +258,7 @@ class AllTickets extends Component {
                     <StatsCard
                             bigIcon={<i className="pe-7s-ticket" />}
                             statsText="Total Unresolved Tickets"
-                            statsValue="15"
+                            statsValue={this.state.Unresolved}
                             statsIcon={<i className="fa fa-refresh" />}
                             statsIconText="Updated now"
                         />
@@ -193,7 +267,7 @@ class AllTickets extends Component {
                     <StatsCard
                         bigIcon={<i className="pe-7s-ticket" />}
                         statsText="Total Urgent Tickets"
-                        statsValue="13"
+                        statsValue={this.state.Urgent}
                         statsIcon={<i className="fa fa-calendar-o" />}
                         statsIconText="Last day"
                     />

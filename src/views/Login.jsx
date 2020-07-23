@@ -49,6 +49,8 @@ class Login extends Component {
           console.log(res);
           if (res.data === true){
             localStorage.setItem("Authorization", "true")
+            localStorage.setItem("username", var1);
+
           }
         })
 
@@ -56,6 +58,16 @@ class Login extends Component {
 
     setTimeout(() => {window.location.reload()}, 2000)
     // window.location.reload();
+
+
+  }
+  demo = (e) => {
+    e.preventDefault();
+
+    localStorage.setItem("Authorization", "true")
+    localStorage.setItem("username", "Demo");
+
+    setTimeout(() => {window.location.reload()}, 2000)
 
 
   }
@@ -69,7 +81,16 @@ class Login extends Component {
 
     if(var1 !== "" && var2 !== "" && var3 !== "" && var4 !== ""){
       axios.post("https://teaaurora.ngrok.io/api/User", {uid:var1, Password:var2, Firstname:var3, Lastname:var4, projectIds:[]})
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        localStorage.setItem("Authorization", "true");
+        localStorage.setItem("username", var1);
+
+        setTimeout(() => {window.location.reload()}, 2000)
+
+
+      }
+      )
     }
 
 
@@ -78,7 +99,7 @@ class Login extends Component {
 
   render() {
     if(localStorage.getItem("Authorization")){
-      return(<div><Redirect to="/admin/dashboard" /></div>)
+      return(<div><Redirect to="/admin/ChooseProject" /></div>)
 
 
     }
@@ -208,6 +229,59 @@ class Login extends Component {
                     
                     <Button bsStyle="info" pullRight fill type="submit" onClick={this.Login}>
                       Login
+                    </Button>
+                    <div className="clearfix" />
+                  </form>
+                }
+              />
+            </Col>
+          </Row>
+
+          <Row>
+          <Col md={6}>
+            <Card
+                title="Demo"
+                content={
+                  <form>
+                    <Row>
+                      <Col md={6}>
+                        <FormGroup controlId="formControlsUsernameLogin">
+                          <ControlLabel>username</ControlLabel>
+                          <FormControl
+                            rows="1"
+                            type = "text"
+                            bsClass="form-control"
+                            placeholder="Demo Name"
+                            disabled={true}
+                            // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
+                            // playlist we get an issue with it calling another fuction who call the original function causing a 
+                            // loop."
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                      
+                      <Col md={6}>
+                        <FormGroup controlId="formControlsPasswordLogin">
+                          <ControlLabel>password</ControlLabel>
+                          <FormControl
+                            rows="1"
+                            type = "password"
+                            bsClass="form-control"
+                            placeholder="********"
+                            disabled={true}
+                            // defaultValue="When trying to call axios.get in the playlist file to get the tracks belonging to that 
+                            // playlist we get an issue with it calling another fuction who call the original function causing a 
+                            // loop."
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    
+                    
+                    <Button bsStyle="info" pullRight fill type="submit" onClick={this.demo}>
+                      Click for a quick Demo
                     </Button>
                     <div className="clearfix" />
                   </form>
