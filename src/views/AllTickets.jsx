@@ -71,7 +71,7 @@ class AllTickets extends Component {
 
   componentDidMount = () => {
     if(localStorage.getItem("SelectedProject") !== null){
-    axios.get(`https://teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
+    axios.get(`https:/teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`)
         .then(res => {
           for(var i=0; i<res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].category, res.data[i].uid, res.data[i].uid, 

@@ -57,7 +57,7 @@ class SpecificProject extends Component {
     if (var4.indexOf(',') > -1) { var4 = var4.split(','); splitted2 = true; }
     
 
-    Axios.get(`https://teaaurora.ngrok.io/api/Project/${this.props.ProjectId}`)
+    Axios.get(`https:/teaaurora.ngrok.io/api/Project/${this.props.ProjectId}`)
     .then(res => {
         console.log(var3.length);
         if(splitted1 === true && var3.length > 0){
@@ -67,7 +67,7 @@ class SpecificProject extends Component {
 
             }
             console.log("adding multi members", var3)
-            Axios.post("https://teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
+            Axios.post("https:/teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
                                                          members:res.data.members.concat(var3), projectManagers:res.data.projectManagers})
             .then(res => console.log(res))
 
@@ -79,7 +79,7 @@ class SpecificProject extends Component {
             // const index = mems.indexOf(var3);
             console.log("adding single members", var3)
 
-            Axios.post("https://teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
+            Axios.post("https:/teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
                                                              members:res.data.members.concat([var3]), projectManagers:res.data.projectManagers})
             .then(res => console.log(res))
                 
@@ -100,7 +100,7 @@ class SpecificProject extends Component {
             }
              console.log("new list is", mems)
 
-            Axios.post("https://teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
+            Axios.post("https:/teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
             members:mems, projectManagers:res.data.projectManagers})
             .then(res => console.log(res))
 
@@ -119,7 +119,7 @@ class SpecificProject extends Component {
                 console.log("removing a single members", var4)
 
                 mems.splice(index, 1);
-                Axios.post("https://teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
+                Axios.post("https:/teaaurora.ngrok.io/api/Project", {pid:res.data.pid, projectName:res.data.projectName, dateCreated:res.data.dateCreated,
                 members:mems, projectManagers:res.data.projectManagers})
                 .then(res => console.log(res))
 
@@ -166,7 +166,7 @@ class SpecificProject extends Component {
 
   componentDidMount(){
     // console.log(this.props.TicketId)
-    Axios.get(`https://teaaurora.ngrok.io/api/Project/${this.props.ProjectId}`)
+    Axios.get(`https:/teaaurora.ngrok.io/api/Project/${this.props.ProjectId}`)
     .then(res => {
       this.setState({pid:res.data.pid, Title:res.data.projectName, DateCreated:res.data.dateCreated, members: res.data.members, 
                      pms:res.data.projectManagers })

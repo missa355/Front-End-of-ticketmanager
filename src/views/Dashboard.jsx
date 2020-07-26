@@ -84,7 +84,7 @@ class Dashboard extends Component {
     
     //
     if(localStorage.getItem("SelectedProject") !== null){
-      axios.get(`https://teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      axios.get(`https:/teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
       // {
       //   auth: {
       //       username: "user",

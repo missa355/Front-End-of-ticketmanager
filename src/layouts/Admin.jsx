@@ -184,7 +184,7 @@ class Admin extends Component {
       console.log(selected)
 
       
-      axios.get(`https://teaaurora.ngrok.io/api/Project/${selected}`)
+      axios.get(`https:/teaaurora.ngrok.io/api/Project/${selected}`)
       .then(res => {
         // console.log("res.data is", res.data)
         localStorage.setItem("NameOfChosenProject", res.data.projectName)

@@ -514,14 +514,14 @@ var dataSales = {
     "6:00AM"
   ],
   series: [
-    [287, 385, 490, 492, 554, 586, 698, 695],
-    [67, 152, 143, 240, 287, 335, 435, 437],
-    [23, 113, 67, 108, 190, 239, 307, 308]
+    [2.87, 3.85, 4.90, 4.92, 5.54, 5.86, 6.98, 6.95],
+    [0.67, 1.52, 1.43, 2.40, 2.87, 3.35, 4.35, 4.37],
+    [0.23, 1.13, 0.67, 1.08, 1.90, 2.39, 3.07, 3.08]
   ]
 };
 var optionsSales = {
   low: 0,
-  high: 800,
+  high: 8,
   showArea: false,
   height: "245px",
   axisX: {
@@ -548,7 +548,7 @@ var responsiveSales = [
   ]
 ];
 var legendSales = {
-  names: ["Open", "Click", "Click Second Time"],
+  names: ["Normal Ticket", "Important Ticket", "Very Important"],
   types: ["info", "danger", "warning"]
 };
 

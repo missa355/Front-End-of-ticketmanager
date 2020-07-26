@@ -117,7 +117,7 @@ class CreateProject extends Component {
     // console.log(project)
     // Creating a project and adding it to the mongo database
 
-    axios.post("https://teaaurora.ngrok.io/api/Project", project)
+    axios.post("https:/teaaurora.ngrok.io/api/Project", project)
         .then(res => console.log(res))
 
     //now we need to add the project id to each Project manager and user
@@ -130,12 +130,12 @@ class CreateProject extends Component {
       for(var i=0; i<var3.length; i++){
         var3[i] = var3[i].trim()
         console.log(var3[i])
-        axios.get(`https://teaaurora.ngrok.io/api/User/${var3[i]}`)
+        axios.get(`https:/teaaurora.ngrok.io/api/User/${var3[i]}`)
         .then(res=>{
             console.log(res.data, "here")
 
             if(res.data !== ""){
-              axios.post("https://teaaurora.ngrok.io/api/User/Update", {uid:res.data.uid, firstname:res.data.firstname,lastname:res.data.lastname, projectIds:res.data.projectIds.concat([project.pid])})
+              axios.post("https:/teaaurora.ngrok.io/api/User/Update", {uid:res.data.uid, firstname:res.data.firstname,lastname:res.data.lastname, projectIds:res.data.projectIds.concat([project.pid])})
                 .then(res=>console.log(res))   
             }
             else{
@@ -151,11 +151,11 @@ class CreateProject extends Component {
     }
     else if(splitted1 === false){
       var3 = var3.trim()
-        axios.get(`https://teaaurora.ngrok.io/api/User/${var3}`)
+        axios.get(`https:/teaaurora.ngrok.io/api/User/${var3}`)
         .then(res=>{
             console.log(res.data, "here")
             if(res.data !== ""){
-            axios.post("https://teaaurora.ngrok.io/api/User/Update", {uid:res.data.uid, firstname:res.data.firstname,lastname:res.data.lastname, projectIds:res.data.projectIds.concat([project.pid])})
+            axios.post("https:/teaaurora.ngrok.io/api/User/Update", {uid:res.data.uid, firstname:res.data.firstname,lastname:res.data.lastname, projectIds:res.data.projectIds.concat([project.pid])})
             .then(res=>console.log(res))
             }
             else{
@@ -176,12 +176,12 @@ class CreateProject extends Component {
       for(var i=0; i<var4.length; i++){
         var4[i] = var4[i].trim()
         console.log(var4[i])
-        axios.get(`https://teaaurora.ngrok.io/api/ProjectManager/${var4[i]}`)
+        axios.get(`https:/teaaurora.ngrok.io/api/ProjectManager/${var4[i]}`)
         .then(res=>{
             console.log(res.data, "here")
 
             if(res.data !== ""){
-              axios.post("https://teaaurora.ngrok.io/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, 
+              axios.post("https:/teaaurora.ngrok.io/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, 
                                                                      projectIds:res.data.projectIds.concat([project.pid])})
               .then(res=>console.log(res))   
             }
@@ -198,11 +198,11 @@ class CreateProject extends Component {
     }
     else if(splitted2 === false){
       var4 = var4.trim()
-        axios.get(`https://teaaurora.ngrok.io/api/ProjectManager/${var4}`)
+        axios.get(`https:/teaaurora.ngrok.io/api/ProjectManager/${var4}`)
         .then(res=>{
             console.log(res.data, "here")
             if(res.data !== ""){
-            axios.post("https://teaaurora.ngrok.io/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, projectIds:res.data.projectIds.concat([project.pid])})
+            axios.post("https:/teaaurora.ngrok.io/api/ProjectManager", {pmid:res.data.pmid, name:res.data.name, projectIds:res.data.projectIds.concat([project.pid])})
             .then(res=>console.log(res))
             }
             else{

@@ -108,7 +108,7 @@ class SpecificTicket extends Component {
   }
 
   componentDidMount() {
-    axios.get("https://teaaurora.ngrok.io/api/Ticket")
+    axios.get("https:/teaaurora.ngrok.io/api/Ticket")
         .then(res => console.log(res.data))
 
   }
@@ -157,7 +157,7 @@ class SpecificTicket extends Component {
     }
       console.log(ticketjson)
 
-      axios.post("https://teaaurora.ngrok.io/api/Ticket", ticketjson, {  auth: {
+      axios.post("https:/teaaurora.ngrok.io/api/Ticket", ticketjson, {  auth: {
         user: 'user',
         password: 'a8904819-9fe0-43f2-b8b8-5cd76859ac04',
       }})

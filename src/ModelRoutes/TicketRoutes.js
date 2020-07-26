@@ -150,7 +150,7 @@ var TicketRoutes = [
 
 
 
-Axios.get("https://teaaurora.ngrok.io/api/Ticket") //this gets all tickets
+Axios.get("https:/teaaurora.ngrok.io/api/Ticket") //this gets all tickets
 .then(res => {
   localStorage.setItem("tickets", JSON.stringify(res.data))
   }); 
@@ -179,7 +179,7 @@ for(i=0; i<tkts.length; i++){
   
 }
 //Adding the project pages
-Axios.get("https://teaaurora.ngrok.io/api/Project") //this gets all tickets
+Axios.get("https:/teaaurora.ngrok.io/api/Project") //this gets all tickets
 .then(res => {
   localStorage.setItem("projects", JSON.stringify(res.data))
   }); 

@@ -86,7 +86,7 @@ class AllTickets extends Component {
 
   componentDidMount = () => {
     console.log(localStorage.getItem("username"))
-      Axios.get(`https://teaaurora.ngrok.io/api/Project/uid/${localStorage.getItem("username")}`)
+      Axios.get(`https:/teaaurora.ngrok.io/api/Project/uid/${localStorage.getItem("username")}`)
       .then(res=>{
           for(var i=0; i < res.data.length; i++){
             this.setState({tdArray:[...this.state.tdArray, [res.data[i].projectName, res.data[i].pid, "PlaceHolder", res.data[i].dateCreated]]})
@@ -97,7 +97,7 @@ class AllTickets extends Component {
 
     })
     if(localStorage.getItem("SelectedProject") !== null){
-      Axios.get(`https://teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
+      Axios.get(`https:/teaaurora.ngrok.io/api/Ticket/projects/${localStorage.getItem("SelectedProject")}`
       // {
       //   auth: {
       //       username: "user",
